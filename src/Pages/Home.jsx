@@ -4,11 +4,12 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Home = () => {
 
-    const {user} = useContext(AuthContext)
+    const {user} = useContext(AuthContext);
+    console.log(user)
 
     return (
         <div>
-            <h2>Home: {user}</h2>
+          { user && <h2>Home: {user.email}</h2>}
         </div>
     );
 };
