@@ -1,5 +1,7 @@
+import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import auth from "../Firebase/firebase.config";
 import { AuthContext } from "../Provider/AuthProvider";
 
 
@@ -22,7 +24,16 @@ const Register = () => {
         .then(result =>{
             const user = result.user;
             console.log('create user', user);
-            alert('user Created Successfully')
+            updateProfile(auth.currentUser, {
+                displayName: name,
+            })
+            .then(()=>{
+                alert('user Created Successfully');
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
+           
         })
         .catch(error =>{
             console.log(error.message)
